@@ -25,7 +25,7 @@ class GitHubIssueFetcherTest extends WebTestCase
 
         $gitHubIssueFetcher = self::$container->get(GitHubIssueFetcher::class);
 
-        $response = $gitHubIssueFetcher->fetch();
+        $response = $gitHubIssueFetcher->fetch('foo');
 
         $this->assertInstanceOf(PopularWord::class, $response);
     }

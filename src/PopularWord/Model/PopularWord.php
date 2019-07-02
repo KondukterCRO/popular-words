@@ -9,10 +9,10 @@ namespace App\PopularWord\Model;
  *
  * Class that represents popular word returned by our API.
  */
-class PopularWord
+class PopularWord implements \JsonSerializable
 {
     /**
-     * Term that we're searchgin for.
+     * Term that we're searching for.
      *
      * @var string
      */
@@ -24,6 +24,12 @@ class PopularWord
      * @var float
      */
     private $score;
+
+    /** {@inheritdoc} */
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 
     /**
      * PopularWord constructor.

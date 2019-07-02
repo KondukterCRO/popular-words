@@ -14,9 +14,11 @@ use App\PopularWord\Model\PopularWord;
 interface PopularWordFetcherInterface
 {
     /**
-     * Fetch popular word from external service and return model of it.
+     * Fetch occurrences of given string from external service and return model of it.
+     *
+     * @param string $term
      *
      * @return PopularWord
      */
-    public function fetch(): PopularWord;
+    public function fetch(string $term): PopularWord;
 }

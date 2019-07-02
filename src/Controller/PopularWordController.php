@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\PopularWord\PopularWordFetcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class PopularWordController
@@ -14,8 +15,31 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class PopularWordController
 {
-    public function getScore(PopularWordFetcherInterface $popularWordFetcher): JsonResponse
+    /**
+     * @param PopularWordFetcherInterface $popularWordFetcher
+     * @param Request                     $request
+     *
+     * @return JsonResponse
+     */
+    public function getScore(PopularWordFetcherInterface $popularWordFetcher, Request $request): JsonResponse
     {
-        return new JsonResponse($popularWordFetcher->fetch());
+        $term = $request->query->get('term');
+
+        if (!$term) {
+            return new JsonResponse(
+                [
+                    'errors' =>
+                        [
+                            'field' => 'term',
+                            'status' => 'missing',
+                        ],
+                ],
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        return new JsonResponse(
+            $popularWordFetcher->fetch($term)
+        );
     }
 }
