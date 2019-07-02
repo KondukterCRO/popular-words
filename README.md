@@ -2,6 +2,8 @@
 * Clone repo
 * Run ```php bin/console server:start``` to start development server (server:stop to stop if needed)
 * Run ```composer install``` to install dependencies (composer update every other time we have dependencies updates)
+* Make sure to install PHP 7.2 and MySQL 5.7 local
+* Copy ```.env.dist``` to ```.env file``` and set your database credentials (create database schema before) 
 * Run ```php bin/console doctrine:schema:update --force``` to execute migrations (each time we have migrations 
 you run this command)
 

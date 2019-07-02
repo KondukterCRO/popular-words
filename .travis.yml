@@ -1,0 +1,11 @@
+language: php
+php:
+  - '7.2'
+install:
+    - composer install
+    - cp .env.dist .env
+    - php bin/console doctrine:schem:update --force
+script:
+    - php bin/phpunit
+env:
+    - SYMFONY_VERSION="4.3.1" DB=mysql
