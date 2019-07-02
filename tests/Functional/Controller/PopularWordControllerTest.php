@@ -24,5 +24,8 @@ class PopularWordControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertJson($client->getResponse()->getContent());
+        $response = json_decode($client->getResponse()->getContent());
+        $this->assertObjectHasAttribute('term', $response);
+        $this->assertObjectHasAttribute('score', $response);
     }
 }

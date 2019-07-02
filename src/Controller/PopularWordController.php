@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\PopularWord\PopularWordFetcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -13,8 +14,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class PopularWordController
 {
-    public function getScore(): JsonResponse
+    public function getScore(PopularWordFetcherInterface $popularWordFetcher): JsonResponse
     {
-        return new JsonResponse();
+        return new JsonResponse($popularWordFetcher->fetch());
     }
 }
