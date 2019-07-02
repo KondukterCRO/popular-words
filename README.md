@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/KondukterCRO/popular-words.svg?branch=master)](https://travis-ci.org/KondukterCRO/popular-words)
+
 ### Running project
 * Clone repo
 * Run ```php bin/console server:start``` to start development server (server:stop to stop if needed)
