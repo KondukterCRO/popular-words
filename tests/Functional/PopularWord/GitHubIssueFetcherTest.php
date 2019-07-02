@@ -2,7 +2,7 @@
 
 namespace App\Tests\Functional\PopularWord;
 
-use App\PopularWord\Model\PopularWord;
+use App\PopularWord\Model\SearchTerm;
 use App\PopularWord\GitHubIssueFetcher;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Test can class fetch GitHub for issues.
  */
 class GitHubIssueFetcherTest extends WebTestCase
-
 {
     /**
      * @covers GitHubIssueFetcher::fetch()
@@ -27,6 +26,6 @@ class GitHubIssueFetcherTest extends WebTestCase
 
         $response = $gitHubIssueFetcher->fetch('foo');
 
-        $this->assertInstanceOf(PopularWord::class, $response);
+        $this->assertInstanceOf(SearchTerm::class, $response);
     }
 }

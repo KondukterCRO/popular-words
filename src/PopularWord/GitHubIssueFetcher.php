@@ -2,7 +2,7 @@
 
 namespace App\PopularWord;
 
-use App\PopularWord\Model\PopularWord;
+use App\PopularWord\Model\SearchTerm;
 
 /**
  * Class GitHubIssueFetcher
@@ -21,7 +21,7 @@ class GitHubIssueFetcher implements PopularWordFetcherInterface
      * {@inheritdoc}
      * @throws \RuntimeException
      */
-    public function fetch(string $term): PopularWord
+    public function fetch(string $term): SearchTerm
     {
         $ch = curl_init();
 
@@ -42,6 +42,6 @@ class GitHubIssueFetcher implements PopularWordFetcherInterface
             throw new \RuntimeException($error, $errorNo);
         }
 
-        return new PopularWord('php', json_decode($response)->total_count);
+        return new SearchTerm($term, json_decode($response)->total_count);
     }
 }

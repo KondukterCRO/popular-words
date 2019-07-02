@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\PopularWord\PopularWordFetcherInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\PopularWord\WordPopularityGenerator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class PopularWordController
@@ -16,12 +16,12 @@ use Symfony\Component\HttpFoundation\Request;
 class PopularWordController
 {
     /**
-     * @param PopularWordFetcherInterface $popularWordFetcher
-     * @param Request                     $request
+     * @param WordPopularityGenerator $wordPopularityGenerator
+     * @param Request                 $request
      *
      * @return JsonResponse
      */
-    public function getScore(PopularWordFetcherInterface $popularWordFetcher, Request $request): JsonResponse
+    public function getScore(WordPopularityGenerator $wordPopularityGenerator, Request $request): JsonResponse
     {
         $term = $request->query->get('term');
 
@@ -39,7 +39,7 @@ class PopularWordController
         }
 
         return new JsonResponse(
-            $popularWordFetcher->fetch($term)
+            $wordPopularityGenerator->generate($term)
         );
     }
 }

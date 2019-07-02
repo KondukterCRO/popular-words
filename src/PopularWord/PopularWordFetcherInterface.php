@@ -2,7 +2,7 @@
 
 namespace App\PopularWord;
 
-use App\PopularWord\Model\PopularWord;
+use App\PopularWord\Model\SearchTerm;
 
 /**
  * Interface PopularWordFetcherInterface
@@ -18,7 +18,7 @@ interface PopularWordFetcherInterface
      *
      * @param string $term
      *
-     * @return PopularWord
+     * @return SearchTerm
      */
-    public function fetch(string $term): PopularWord;
+    public function fetch(string $term): SearchTerm;
 }
