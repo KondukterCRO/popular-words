@@ -38,8 +38,22 @@ class PopularWordController
             );
         }
 
+        try {
+            $popularWord = $wordPopularityGenerator->generate($term);
+        } catch (\RuntimeException $runtimeException) {
+            return new JsonResponse(
+                [
+                    'errors' =>
+                        [
+                            'content' => 'not found',
+                        ],
+                ],
+                JsonResponse::HTTP_NO_CONTENT
+            );
+        }
+
         return new JsonResponse(
-            $wordPopularityGenerator->generate($term)
+            $popularWord
         );
     }
 }
